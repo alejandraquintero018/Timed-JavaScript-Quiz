@@ -35,6 +35,11 @@ button{
     border-radius: 10%;
     font-weight: bolder;
 }
+
+.hide{
+    display:none;
+}
+
 button:hover {
     background-color: #fbec5d;
     cursor: pointer;
