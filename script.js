@@ -7,7 +7,7 @@ var EndGameEl = document.querySelector(".EndScript");
 var UserInput = document.querySelector(".Name");
 var SubmitBtn = document.querySelector(".Submit"); 
 var StartoverBtn = document.querySelector(".Startover");
-var timer = 3;
+var timer = 30;
 var quizinterval;
 var currentquestionindex = 0;
 var index = 0;
@@ -133,6 +133,3 @@ var questions = [
         answer: 'console.log',
     },
 ];
-
-//function to check if the answer is right or wrong, current index++
-//
