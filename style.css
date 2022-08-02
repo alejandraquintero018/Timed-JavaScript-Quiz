@@ -40,6 +40,12 @@ button{
     display:none;
 }
 
+.Submit { 
+    flex: wrap;
+    border: none;
+    padding: 1%;
+}
+
 button:hover {
     background-color: #fbec5d;
     cursor: pointer;
