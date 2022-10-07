@@ -9,8 +9,8 @@ var SubmitBtn = document.querySelector(".Submit");
 var StartoverBtn = document.querySelector(".Startover");
 var timer = 30;
 var quizinterval;
-var currentquestionindex = 0;
-var index = 0;
+var currentQuestionIndex = 0;
+let winners = []; 
 
 //WHEN I click the start button
 //THEN a timer starts  I am presented with a question, this also hides the start page 
@@ -27,16 +27,18 @@ function countdown() {
     if (timer >= 1) {
         timer--;
         timerEl.textContent = "Time: " + timer;
-    } if (timer === 0) {
+    } if (timer === 0 || currentQuestionIndex == questions.length) {
         quizend();
     }
 };
+
 //displaying the current question and populating the HTML with the answers 
 var displayquestions = function () {
-    CurrentQuestion.textContent = questions[index].title;
+    CurrentQuestion.textContent = questions[currentQuestionIndex].title;
+    let answers = questions[currentQuestionIndex].choices 
     answerEl.innerHTML = "";
-    for (var i = 0; i < questions[index].choices.length; i++) {
-        var choice = questions[index].choices[i];
+    for (var i = 0; i < answers.length; i++) {
+        var choice = answers[i];
         var choiceBtn = document.createElement("button");
         choiceBtn.textContent = choice;
         choiceBtn.setAttribute("value", choice);
@@ -47,24 +49,25 @@ var displayquestions = function () {
 
 
 //checking the answer the user gives and making an adjustment to the timer
-var answercheck = function () {
-    if (this.value !== questions[index].answer) {
-        for (var i = 0; i < questions.length; i++) {
-            displayquestions();
+var answercheck = function (e) {
+    console.log(this);
+    console.log(e);
+
+    if (this.value !== questions[currentQuestionIndex].answer) {
             console.log("click");
             timer -= 5;
-        }
+            window.alert('Incorrect');
     }
-    if (this.value === questions[index].answer) {
-        for (var i = 0; i < questions.length; i++) {
-            displayquestions();
+    else  {
             console.log("click");
+            window.alert('Correct');
         }
+
+        currentQuestionIndex += 1;
+        displayquestions();
     }
-    if (timer === 0) {
-        quizend();
-    }
-}
+
+   
 //function that is called that will prompt the end of the game 
 //quizend stop the timer 
 
@@ -97,6 +100,11 @@ var quizend = function () {
     })
 
 }
+
+// function savehighscores 
+//check if there is something in local storage 
+
+
 
 //array that holds all of the questions, choices and answer
 var questions = [
